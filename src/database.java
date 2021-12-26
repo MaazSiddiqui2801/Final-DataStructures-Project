@@ -9,6 +9,8 @@ public class database {
 
         Scanner sc = null;
         try {
+            //change  the path here to run the code
+            // our data is named as populationData.xlsx
             String path = "D:\\Downloads\\PopulationCensus-Project\\Final-DataStructures-Project\\src\\populationData.xlsx";
             BufferedReader br = new BufferedReader(new FileReader(path));
         } catch (FileNotFoundException e) {
@@ -71,7 +73,7 @@ public class database {
 //            int key = R.nextInt(900) + 100; // generate hundred 3-digit random number
 //            HQ.insertQaud(key);
 //        }
-        System.out.println("~QUADRATIC PROBING~");
+      //  System.out.println("~QUADRATIC PROBING~");
         System.out.println(H.toStringQaud());
         System.out.println();
         System.out.println("No of Collisions are: " + H.numofCollisionsQaud);
