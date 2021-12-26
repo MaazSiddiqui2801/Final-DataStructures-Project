@@ -8,6 +8,7 @@ public class database {
     public void databaseDesign() {
 
         Scanner sc = null;
+        //path: D:\Downloads\PopulationCensus-Project\Final-DataStructures-Project\src\populationData.xlsx
         try {
             String path = "D:\\Downloads\\PopulationCensus-Project\\Final-DataStructures-Project\\src\\populationData.xlsx";
             BufferedReader br = new BufferedReader(new FileReader(path));
