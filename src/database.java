@@ -12,9 +12,17 @@ public class database {
         try {
             //change  the path here to run the code
             // our data is named as populationData.xlsx
-            String path = "D:\\Downloads\\PopulationCensus-Project\\Final-DataStructures-Project\\src\\populationData.xlsx";
+            String path = "D:\\Downloads\\PopulationCensus-Project\\Final-DataStructures-Project\\src\\data.csv";
+            String line="";
             BufferedReader br = new BufferedReader(new FileReader(path));
+
+            while((line= br.readLine())!= null){
+                System.out.println(line);
+            }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -59,7 +67,7 @@ public class database {
             H.insertQaud(key);
         }
 
-        System.out.println(H);
+     /*   System.out.println(H);
         System.out.println();
         System.out.println("No of Collisions are: " + H.numofCollisions);
         System.out.println("No of Occupied Cells are: " + H.numofOccupiedCells);
@@ -69,13 +77,13 @@ public class database {
         int value = input.nextInt();
         System.out.println("SEARCH VALUE FOUND: " + H.search(value));
 
-
+*/
 //        for (int i = 0; i < 100; i++) {
 //            int key = R.nextInt(900) + 100; // generate hundred 3-digit random number
 //            HQ.insertQaud(key);
 //        }
       //  System.out.println("~QUADRATIC PROBING~");
-        System.out.println(H.toStringQaud());
+      /*  System.out.println(H.toStringQaud());
         System.out.println();
         System.out.println("No of Collisions are: " + H.numofCollisionsQaud);
         System.out.println("No of Occupied Cells are: " + H.numofOccupiedCellsQaud);
@@ -85,7 +93,7 @@ public class database {
         int value2 = input2.nextInt();
         System.out.println("SEARCH VALUE FOUND: " + H.searchQaud(value2));
 
-
+*/
         //H.find(R); // find number you already insert , also check the not found case
         //System.out.println(H);
     }

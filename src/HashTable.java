@@ -2,7 +2,7 @@ public class HashTable {
 
         int[] Table;
         int[] TableQaud;
-
+/;//jfoiaijijawpdjapdw
         int numofCollisions = 0;
         int numofCollisionsQaud = 0;
         int numofOccupiedCells = 0;
