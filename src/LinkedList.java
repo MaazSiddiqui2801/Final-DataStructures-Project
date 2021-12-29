@@ -1,36 +1,34 @@
+
 public class LinkedList {
-    
-    Node_LinkedList Head;
-    Node_LinkedList Tail;
-    
-    public void insert(String Province,String District,String UorR,String Sex, String SEC,String AgeGroup,int Population)
-    {
-        Node_LinkedList temp = new Node_LinkedList( Province, District, UorR,Sex, SEC, AgeGroup, Population);
-        if(Head == null)
-        {
-            Head = Tail = temp;
-        }
-        else
-        {
-            Tail.next = temp;
-            Tail = temp;
-        }
+    Node head;
+ public void insert(Node d) { //BigO(n)
 
-    }
+     if (head == null) {
+         head = d;
+     } else {
+         Node curr = head;
+         Node prev = head;
+         for (curr = head; curr != null; curr = curr.next) {
+             prev = curr;
+         }
+         prev.next = d;
+     }
+ }
+  // code insert data in ascending order }
+ public Node[] returnData(){//BigO(n)
+     Node[] temp;
+     Node curr;
 
-    public int getNumD(String a)
-    {
-        Node_LinkedList temp = Head;
-        int i = 0;
-
-        while(temp!= null){
-            if(temp.Province.equals(a)){
-                i++;
-            }
-            temp = temp.next;
-        }
-        return i;
-
-
-    }
+     int count = 0;
+     for (curr = head; curr != null ; curr = curr.next) {
+         count++;
+         }
+     temp = new Node[count];
+     int count2 = 0;
+     for (curr = head; curr != null ; curr = curr.next) {
+         temp[count2] = curr;
+         count2++;
+     }
+     return temp;
+ }
 }
