@@ -2,10 +2,24 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 
 public class Main_DataBase {
     public static void main(String[] args) {
+        System.out.println("which province?");
+        Scanner sc = new Scanner(System.in);
+        String province = sc.nextLine();
+        System.out.println("which district?");
+        String district = sc.nextLine();
+        System.out.println("urban or rural?");
+        String urbanRural = sc.nextLine();
+        System.out.println("which gender?");
+        String gender = sc.nextLine();
+        System.out.println("which socio-economic class?");
+        String sec = sc.nextLine();
+        System.out.println("which age group?");
+        String ageGroup = sc.nextLine();
         String path = "D:\\Downloads\\PopulationCensus-Project\\Final-DataStructures-Project\\src\\data.csv";
         String line = "";
         Node Province;
@@ -16,17 +30,11 @@ public class Main_DataBase {
             HashTable H = new HashTable(5); //5 Provinces
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                Province = new Node(values[0], values[1], values[2], values[3], values[4], values[5], values[6]);
+                Province = new Node(values[0], values[1], values[2], values[3], values[4], values[5].trim(), values[6]);
                 H.insert(Province);
             }
-            Node[] Province_HashValues = H.search("Punjab");
-            //Storing Province based data now according to District wise
+            Node[] Province_HashValues = H.search(province);
 
-            //Now input District
-            //System.out.println("Enter District: ");
-            //for (int i = 0; i < Province_HashValues.length; i++) {
-            //  System.out.println(Province_HashValues[i].Province + " " + Province_HashValues[i].DISTRICT + " " + Province_HashValues[i].UrbanOrRural + " " + Province_HashValues[i].Gender + " " + Province_HashValues[i].SEC +" "+  Province_HashValues[i].Data);
-            //}
             int x = 0;
             if (Province_HashValues[0].Province.equals("Punjab"))
                 x = 38;
@@ -43,9 +51,9 @@ public class Main_DataBase {
                 H2.insert(Province_HashValues[i]);
             }
 
-            Node[] District_HashValues = H2.search("VEHARI DISTRICT", Province_HashValues[0].Province);
+            Node[] District_HashValues = H2.search(district, Province_HashValues[0].Province);
             for (int i = 0; i < District_HashValues.length; i++) {
-                 System.out.println(District_HashValues[i].Province + " " + District_HashValues[i].DISTRICT + " " + District_HashValues[i].UrbanOrRural + " " + District_HashValues[i].Gender + " " + District_HashValues[i].SEC +" "+ District_HashValues[i].Age_Group+ " "+ District_HashValues[i].Data);
+                System.out.println(District_HashValues[i].Province + " " + District_HashValues[i].DISTRICT + " " + District_HashValues[i].UrbanOrRural + " " + District_HashValues[i].Gender + " " + District_HashValues[i].SEC +" "+ District_HashValues[i].Age_Group+ " "+ District_HashValues[i].Data);
             }
             System.out.println("District Filter Done!");
 
@@ -54,7 +62,7 @@ public class Main_DataBase {
 
 
             //System.out.println("urban or rural?");
-            String UrbanRural = "Urban";//sc.next();
+            String UrbanRural = urbanRural;//sc.next();
             Node[] UorR;
             int count = 0;
             for (int i = 0; i < District_HashValues.length; i++) {
@@ -89,19 +97,7 @@ public class Main_DataBase {
                 System.out.println("Total is  /////////////////////////////////////////////// " + total); //Total of Both
             }
 
-
-            /*System.out.println("which gender?");
-            String gender = sc.next();
-            System.out.println("which socio-economic class?");
-            String sec = sc.next();
-            System.out.println("which age group?");
-            String ageGroup = sc.next();
-
-             */
-            //
-            ////////////////////Gender
-
-            String Sex = "Male";//sc.next();
+            String Sex = gender;//sc.next();
             Node[] sex;
             int countSex = 0;
             for (int i = 0; i < UorR.length; i++) {
@@ -137,14 +133,8 @@ public class Main_DataBase {
                 System.out.println("Total is " + total2);
             }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////
-            ////////////////////////////////////////
 
-            //// CHECK FOR Socio-Economic Class
-            // Sec A-E
-
-            String Sec = "SEC B";//sc.next();
+            String Sec = sec;
             Node[] Class;
             int countSec = 0;
             for (int i = 0; i < sex.length; i++) {
@@ -172,7 +162,7 @@ public class Main_DataBase {
                     System.out.println(Class[i].Province + " " + Class[i].DISTRICT + " " + Class[i].UrbanOrRural + " " + Class[i].Gender + " " + Class[i].SEC + Class[i].Age_Group+ " "+ " " + Class[i].Data);
                     if(Class[i]!=null){
 
-                    total3 = total3 + Integer.parseInt(Class[i].Data);}
+                        total3 = total3 + Integer.parseInt(Class[i].Data);}
                 }
                 System.out.println("Total is------------------------------------------------------------ " + total3);///////
             } else if (Sec.equals("All")) {
@@ -184,8 +174,7 @@ public class Main_DataBase {
             }
 
 
-            String age = "10-14";//sc.next();/////
-           //age.trim();
+            String age = ageGroup;
             Node[] AGE;
             int countAge = 0;
             for (int i = 0; i < Class.length; i++) {
@@ -203,17 +192,15 @@ public class Main_DataBase {
                 int countAge2 = 0;
                 for (int i = 0; i < Class.length; i++) {
                     if (Class[i].Age_Group.equals(age)) {
-                        /////
                         AGE[countAge2] = Class[i];
                         countAge2++;
-
                     }
 
                 }
                 for (int i = 0; i < AGE.length; i++) {
                     System.out.println(AGE[i].Province + " " + AGE[i].DISTRICT + " " + AGE[i].UrbanOrRural + " " + AGE[i].Gender + " " + AGE[i].SEC + AGE[i].Age_Group+ " "+ " " + AGE[i].Data);
 
-                       total4 = total4 + Integer.parseInt(AGE[i].Data);
+                    total4 = total4 + Integer.parseInt(AGE[i].Data);
 
                 }
                 System.out.println("Total is------------------------------------------------------------ " + total4);///////
